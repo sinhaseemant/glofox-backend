@@ -1,6 +1,6 @@
 # Glofox API Client
 
-This is a Golang client for the Glofox API, providing endpoints for managing:
+This is a Golang client for the Glofox API, providing endpoints for managing bookings and classes:
 
 - **Classes**
   - `GET`, `POST`

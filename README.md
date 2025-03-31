@@ -17,6 +17,9 @@ You can build and run the service using Docker.
 docker-compose up --build
 ```
 
+To View Swagger Docs (OPENAPI SPEC) after docker is up and running visit
+http://localhost:8080/swagger/index.html
+
 ### Test
 
 ```bash

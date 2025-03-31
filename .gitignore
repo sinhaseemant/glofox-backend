@@ -1,0 +1,9 @@
+
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+
+# ignore environment files and environment folders, but not .env-sample
+**/.env/*
+**/.env*

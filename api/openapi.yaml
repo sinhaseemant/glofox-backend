@@ -1,0 +1,136 @@
+openapi: 3.0.0
+info:
+  title: Glofox API
+  version: 1.0.0
+server:
+  - url: "/api/v1"
+    description: Glofox API v1
+paths:
+  /classes:
+    get:
+      summary: Get all classes
+      operationId: GetClasses
+      responses:
+        "200":
+          description: List of classes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The ID of the class
+                    class_name:
+                      type: string
+                      description: The name of the class
+                    start_date:
+                      type: string
+                      format: date
+                      description: The start date of the class
+                    end_date:
+                      type: string
+                      format: date
+                      description: The end date of the class
+                    capacity:
+                      type: integer
+                      description: The capacity of the class
+        "400":
+          description: Invalid request
+    post:
+      summary: Create a new class
+      operationId: CreateClass
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClassRequest"
+      responses:
+        "201":
+          description: Class created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The ID of the created class
+                  class_name:
+                    type: string
+                    description: The name of the class
+                  start_date:
+                    type: string
+                    format: date
+                    description: The start date of the class
+                  end_date:
+                    type: string
+                    format: date
+                    description: The end date of the class
+                  capacity:
+                    type: integer
+                    description: The capacity of the class
+
+        "400":
+          description: Invalid request
+
+  /bookings:
+    get:
+      summary: Get all bookings
+      operationId: GetBookings
+      responses:
+        "200":
+          description: List of bookings retrieved successfully
+    post:
+      summary: Book a class
+      operationId: BookClass
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingRequest"
+      responses:
+        "201":
+          description: Booking successful
+        "400":
+          description: Invalid request
+components:
+  schemas:
+    ClassRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        capacity:
+          type: integer
+    BookingRequest:
+      type: object
+      example:
+        class_name: "Yoga Class"
+        member_name: "John Doe"
+        date: "2023-10-01"
+        class_id: "67eacd9f4aed3932a6d966a3"
+      properties:
+        class_name:
+          type: string
+          description: The name of the class booked
+        member_name:
+          type: string
+          description: The name of the member
+        date:
+          type: string
+          format: date
+          description: The specific date of the booking
+        class_id:
+          type: string
+          description: The ID of the class booked
